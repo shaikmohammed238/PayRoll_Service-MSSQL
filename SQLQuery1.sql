@@ -45,3 +45,27 @@ select * from employee_payroll -- Show table
 -- Use SELECT * FROM employee_payroll to retrieve all the data from the employee_payroll table.
 
 select * from employee_payroll
+
+
+---UC5:- Ability to retrieve salary data for a particular employee as well as all employees who have 
+---joined in a particular data range from the payroll service database.
+-- Use SELECT salary FROM employee_payroll WHERE name = 'Bill’ Query to View Bill’s salary.
+-- Use Select query with Where condition View employees between start dates. 
+-- Query: WHERE start BETWEEN CAST('2018-01-01' AS DATE) AND DATE(NOW());
+-- Note: Where Condition Clause is used to retrieve the row needed from the table. 
+---Note: Use of Database Functions like CAST() and NOW() in the Query.
+
+-- UC5.1:- Use SELECT salary FROM employee_payroll WHERE name = 'Bill’ Query to View Bill’s salary.
+
+select salary from employee_payroll
+where name = 'Bill'; --where condition use
+
+select *  from employee_payroll
+where name = 'Bill'; --where condition use
+
+
+-- UC5.2:- Use Select query with Where condition View employees between start dates.
+
+select salary from employee_payroll
+Where startdate BETWEEN CAST('2021-05-13'
+AS DATE) AND GETDATE();
