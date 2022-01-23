@@ -9,3 +9,23 @@ exec sp_databases;
 
 select * 
 from sys.databases;
+
+--uc2  Ability to create a employee payroll table in the payroll service database to manage employee payrolls
+-- Use payroll_service database in MSSQL Client
+-- Use Create Table employee_payroll Query to create employee payroll table with columns id, name, salary and start date as column.
+-- Note Id is set to auto increment. 
+-- Understand the SQL data types to be used for the table
+-- Note: SQL Queries as case insensitive
+
+
+create Table employee_payroll
+(
+id int  NOT NULL identity(1,1) primary key,
+name varchar(20)  NOT NULL,
+salary float NOT NULL,
+start Date NOT NULL,
+);
+
+
+select * from employee_payroll
+
