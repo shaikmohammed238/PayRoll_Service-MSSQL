@@ -318,3 +318,24 @@ select * from Addresses;
 insert into Addresses Values(1,'Kadapa','almas','andhra');
 select * from Addresses;
 
+--- UC12:- Ensure all retrieve queries done especially in UC 4, UC 5 and UC 7 are working with new table structure.
+
+---UC12.1 Rechecking UC4 get income Tax Employee
+
+select Emp_id,Emp_Name,IncomeTax from EmployeeDetails,PayrollDetails where EmployeeDetails.Payroll_id=PayrollDetails.Payroll_id;
+
+---UC12.3 Retrive income Tax UC5 get income Tax Employee
+
+select Emp_id,Emp_Name,IncomeTax from EmployeeDetails,PayrollDetails where Emp_Name='Omprakash' and  EmployeeDetails.Payroll_id=PayrollDetails.Payroll_id;
+
+---UC12.4 Retrive income Tax UC5 get income Tax Employee
+
+select Emp_id,Emp_Name,IncomeTax from EmployeeDetails,PayrollDetails where Start_Date between CAST('1900-01-01' as date) and GETDATE() and  EmployeeDetails.Payroll_id=PayrollDetails.Payroll_id;
+
+
+---UC12.5 Check MIN MAX Income Tax
+
+select * from EmployeeDetails JT inner join(select ITJ.IncomeTax,ITJ.Payroll_id from PayrollDetails inner join (select MAX(IncomeTax) as MaxIncomeTax from PayrollDetails)ITJ1 on ITJ1.MaxIncomeTax=ITJ.IncomeTax)JT1 on JT1.Payroll_id=JT.Payroll_id;
+
+
+
