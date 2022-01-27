@@ -202,4 +202,5 @@ select *  from employee_payroll;
 ALTER TABLE employee_payroll ADD Net_Pay FLOAT;
 select *  from employee_payroll;
 
+sp_help employee_payroll;--sp_help is executed with no arguments, summary information of objects of all types that exist in the current database is returned.
 
