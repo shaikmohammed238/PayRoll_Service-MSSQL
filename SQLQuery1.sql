@@ -67,7 +67,7 @@ where name = 'Bill'; --where condition use
 -- UC5.2:- Use Select query with Where condition View employees between start dates.
 
 select salary from employee_payroll
-Where startdate BETWEEN CAST('2021-05-13'
+Where start BETWEEN CAST('2021-05-13'
 AS DATE) AND GETDATE();
 
 
@@ -146,7 +146,7 @@ GROUP BY Gender;   --The GROUP BY statement groups rows that have the same value
 
 
 
---UC7.4:- Ability to find COUNT number of male and female employees.
+--UC7.5:- Ability to find COUNT number of male and female employees.
 
 SELECT COUNT(salary) FROM employee_payroll        --The COUNT() function returns the number of rows that matches a specified criterion.
 WHERE Gender = 'M' 
@@ -155,3 +155,51 @@ GROUP BY Gender;   --The GROUP BY statement groups rows that have the same value
 SELECT COUNT(salary) FROM employee_payroll           --The COUNT() function returns the number of rows that matches a specified criterion.
 WHERE Gender = 'F' 
 GROUP BY Gender;   --The GROUP BY statement groups rows that have the same values into summary rows.
+
+-- UC8:- Ability to extend employee_payroll data to store employee information like employee phone, address and department.
+-- Ensure employee department is non nullable fields.
+-- Add Default Value for address field.
+
+-- UC8.1:- Ability to extend employee_payroll data to store employee information like employee phone.
+
+alter table employee_payroll add phone bigint; 
+select *  from employee_payroll
+-- UC8.2:- Ability to extend employee_payroll data to store employee information like address.
+-- Add Default Value for address field.
+
+alter table employee_payroll add address varchar(20) NOT NULL default'KADAPA';
+select *  from employee_payroll
+-- UC8.3:- Ability to extend employee_payroll data to store employee information like department.
+-- Ensure employee department is non nullable fields.
+
+alter table employee_payroll add department varchar(20) NOT NULL default'CS';
+select *  from employee_payroll
+-- UC9:- Ability to extend employee_payroll table to have Basic Pay, Deductions, Taxable Pay, Income Tax, Net Pay.
+
+-- UC9.1:- Ability to extend employee_payroll table salary to have Basic Pay.
+
+EXEC sp_RENAME 'employee_payroll.salary', 'Basic_Pay', 'COLUMN';  --SQL Server use sp_rename to rename the column in the Employee_payroll table from salary to Basic_Pay.
+select *  from employee_payroll;
+
+-- UC9.2:- Ability to extend employee_payroll table salary to have Deductions.
+
+ALTER TABLE employee_payroll ADD Deductions FLOAT;
+select *  from employee_payroll;
+
+
+-- UC9.3:- Ability to extend employee_payroll table salary to have Taxable_Pay.
+
+ALTER TABLE employee_payroll ADD Taxable_Pay FLOAT;
+select *  from employee_payroll;
+
+-- UC9.4:- Ability to extend employee_payroll table salary to have Income_Tax.
+
+ALTER TABLE employee_payroll ADD Income_Tax FLOAT;
+select *  from employee_payroll;
+
+-- UC9.5:- Ability to extend employee_payroll table salary to have Net_Pay.
+
+ALTER TABLE employee_payroll ADD Net_Pay FLOAT;
+select *  from employee_payroll;
+
+
